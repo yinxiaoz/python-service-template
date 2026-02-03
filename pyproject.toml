@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "python-service-template"
+version = "0.1.0"
+description = "Python service template"
+authors = ["Yinxiao Zhang <yinxiao@flip.space>"]
+readme = "README.md"
+packages = [
+    {include = "python_service_template", from = "src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pydantic = "^2.12.5"
+python-json-logger = "^4.0.0"
+fastapi = "^0.128.0"
+hypercorn = "^0.18.0"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^7.0.0"
+pytest = "^9.0.2"
+pytest-asyncio = "^1.3.0"
+ruff = "^0.15.0"
+httpx = "^0.28.1"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["I"]  # Enable isort rules
+
+[tool.ruff.lint.isort]
+known-first-party = ["python_service_template"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
